@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TacosMX</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <h1>TacosChidos 🌮</h1>
+  <form id="form" class="buttons">
+      <button type="button" data-type="Puerco">🐷</button>
+      <button type="button" data-type="Pollo">🍗</button>
+      <button type="button" data-type="Res">🐮</button>
+      <button type="button" data-type="Pescado">🎣</button>
+  </form>
+
+  <div id="Container"></div>
+
+  <script>
+    document.querySelectorAll("#form button").forEach(button => {
+      button.addEventListener("click", async (event) => {
+        const type = event.target.getAttribute("data-type").toLowerCase();
+        
+        try {
+          const response = await fetch(`/receta/${type}`);
+          if (!response.ok) {
+            throw new Error(`Error en la petición: ${response.status}`);
+          }
+          
+          const receta = await response.json();
+          console.log("Receta obtenida:", receta);
+
+          const contenedor = document.getElementById("Container"); 
+          if (!receta || receta.error) {
+            contenedor.innerHTML = "<h2>Receta no encontrada</h2>";
+          } else {
+            contenedor.innerHTML = `
+              <h2>${receta.nombre}</h2> 
+              <h3>Ingredientes:</h3>
+              <ul id="ingredientesLista">
+                <li>Carne de: ${receta.proteina.nombre}, Modo preparación: ${receta.proteina.preparacion}</li>
+                <li>Salsa: ${receta.salsa.nombre} (${receta.salsa.picor})</li>
+                ${receta.acompañamientos.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join("")}
+              </ul>`;
+          }
+        } catch (error) {
+          console.error("Error al obtener la receta:", error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

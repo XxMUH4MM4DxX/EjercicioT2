@@ -1,0 +1,74 @@
+[
+    {
+        "id": "001",
+        "nombre": "Taco de Lechon",
+        "precio": 20.00,
+        "proteina": {
+            "nombre": "Puerco",
+            "preparacion": "Horneado"
+        },
+        "salsa": {
+            "nombre": "Tomate Verde",
+            "picor": "Medio"
+        },
+        "acompañamientos": {
+            "nombre": "Cebolla",
+            "cantidad": "1 cucharada",
+            "ingredientes": ["Cebolla Blanca", "Cilantro", "Limon", "Sal"]
+        }
+    },
+    {
+        "id": "002",
+        "nombre": "Taco de Pollo",
+        "precio": 20.00,
+        "proteina": {
+            "nombre": "Pollo",
+            "preparacion": "Asado"
+        },
+        "salsa": {
+            "nombre": "Tomate Verde",
+            "picor": "Medio"
+        },
+        "acompañamientos": {
+            "nombre": "Cebolla",
+            "cantidad": "1 cucharada",
+            "ingredientes": ["Cebolla Blanca", "Cilantro", "Limon", "Sal"]
+        }
+    },
+    {
+        "id": "003",
+        "nombre": "Taco de Res",
+        "precio": 20.00,
+        "proteina": {
+            "nombre": "Res",
+            "preparacion": "Ahumada"
+        },
+        "salsa": {
+            "nombre": "Tomate Verde",
+            "picor": "Medio"
+        },
+        "acompañamientos": {
+            "nombre": "Cebolla",
+            "cantidad": "1 cucharada",
+            "ingredientes": ["Cebolla Blanca", "Cilantro", "Limon", "Sal"]
+        }
+    },
+    {
+        "id": "004",
+        "nombre": "Taco de Pescado",
+        "precio": 20.00,
+        "proteina": {
+            "nombre": "Pescado",
+            "preparacion": "Frito"
+        },
+        "salsa": {
+            "nombre": "Tomate Verde",
+            "picor": "Medio"
+        },
+        "acompañamientos": {
+            "nombre": "Cebolla",
+            "cantidad": "1 cucharada",
+            "ingredientes": ["Cebolla Blanca", "Cilantro", "Limon", "Sal"]
+        }
+    }
+]
