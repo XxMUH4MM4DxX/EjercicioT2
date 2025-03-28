@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación Back-End</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <h1>Programación Back-End 🌐</h1>
+  <div class="buttons">
+      <button type="button" data-type="Lenguajes y Frameworks">Lenguajes y Frameworks</button>
+      <button type="button" data-type="API">API</button>
+      <button type="button" data-type="Base de datos">Base de datos</button>
+      <button type="button" data-type="Pruebas">Pruebas</button>
+      <button type="button" data-type="Implementación">Implementación</button>
+  </div>
+
+  <div id="temaDetalle"></div>
+
+  <script>
+    document.querySelectorAll(".buttons button").forEach(button => {
+      button.addEventListener("click", async (event) => {
+        const type = event.target.getAttribute("data-type");
+        
+        try {
+          const response = await fetch(`/tema/${type}`);
+          const tema = await response.json();
+
+          const contenedor = document.getElementById("temaDetalle"); 
+          if (tema.error) {
+            contenedor.innerHTML = "<h2>Tema no encontrado</h2>";
+          } else {
+            contenedor.innerHTML = `
+              <h2>${tema.nombre}</h2>
+              <p>${tema.descripcion}</p>
+              <h3>Palabras clave:</h3>
+              <ul>
+                ${tema.palabrasClave.map(palabra => `<li>${palabra}</li>`).join("")}
+              </ul>
+              <h3>Prácticas recomendadas:</h3>
+              ${tema.practicas.map(practica => `
+                <h4>${practica.titulo}</h4>
+                <p>${practica.descripcion}</p>
+                <p><strong>Objetivo:</strong> ${practica.objetivo}</p>
+              `).join("")}
+            `;
+          }
+        } catch (error) {
+          console.error("Error al obtener el tema:", error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
